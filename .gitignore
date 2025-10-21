@@ -1,0 +1,44 @@
+# OS / editor / Python
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+.env.*
+
+# Node / frontend
+node_modules/
+dist/
+build/
+
+# Notebooks: ignore outputs or specific files
+notebooks/.ipynb_checkpoints/
+notebooks/eda2.ipynb   # <— you said you don’t want this one pushed
+
+# Data — keep structure, avoid huge files
+# RAW: ignore everything by default, but keep placeholder/readme
+data/raw/
+!data/raw/.gitkeep
+!data/raw/README.md
+
+# CLEAN: keep CSV outputs (useful to teammates & backend)
+# If you prefer to keep only some, adjust the allow-list
+data/clean/**
+!data/clean/*.csv 
+!data/clean/.gitkeep
+!data/clean/README.md
+
+# Large/intermediate artifacts just in case
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.parquet
+*.feather
+*.xls
+*.xlsx   # if you want to avoid Excel sources
+*.bak

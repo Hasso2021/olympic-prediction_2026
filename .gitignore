@@ -17,7 +17,7 @@ build/
 
 # Notebooks: ignore outputs or specific files
 notebooks/.ipynb_checkpoints/
-notebooks/eda2.ipynb   # <— you said you don’t want this one pushed
+notebooks/eda2.ipynb 
 
 # Data — keep structure, avoid huge files
 # RAW: ignore everything by default, but keep placeholder/readme

@@ -85,26 +85,16 @@ df["medal_silver"] = medals_parsed.apply(lambda d: d.get("silver", 0)).astype(in
 df["medal_bronze"] = medals_parsed.apply(lambda d: d.get("bronze", 0)).astype(int)
 df["medal_total"] = df["medal_gold"] + df["medal_silver"] + df["medal_bronze"]
 
-# keep a human-readable summary column too (no change to original data)
-df["athlete_medals_clean"] = medals_parsed.apply(
-    lambda d: ", ".join(f"{v} {k.capitalize()}" for k, v in d.items() if v > 0) or ""
-)
-
-# has_medal: numeric flag (0/1) derived from counts (robust)
-df["has_medal"] = (df["medal_total"] > 0).astype(int)
-
-# --- 4) Clean 'bio' ---
-df["bio"] = df["bio"].fillna("").astype(str).str.strip()
-
-# ...existing code...
-# --- 5) Clean 'athlete_year_birth' ---
 df["athlete_year_birth"] = pd.to_numeric(df["athlete_year_birth"], errors="coerce")
 df.loc[df["athlete_year_birth"] < 1880, "athlete_year_birth"] = pd.NA
+df["first_year"] = pd.to_numeric(df["first_year"], errors="coerce")
+birth_float = df["athlete_year_birth"].astype("Float64")
+df["first_year"] = df["first_year"].astype("Float64").fillna(birth_float + 20)
 
-# --- 6) Handle missing small values (safe arithmetic with pandas) ---
-df["first_year"] = df["first_year"].fillna(df["athlete_year_birth"] + 20)
+df["athlete_year_birth"] = df["athlete_year_birth"].astype("Int64")
+df["first_year"] = df["first_year"].astype("Int64")
 
-# --- 7) Final tidy dataframe (reindex to avoid KeyError) ---
+# final tidy columns (only keep those that exist in df)
 cols = [
     "athlete_full_name",
     "athlete_url",
@@ -113,13 +103,18 @@ cols = [
     "first_game",
     "first_year",
     "athlete_medals_clean",
+    "medal_gold",
+    "medal_silver",
+    "medal_bronze",
+    "medal_total",
     "has_medal",
     "bio"
 ]
-df_clean = df.reindex(columns=cols).copy()
 
-# --- 8) Save ---
-df_clean.to_csv(OUT, index=False, encoding="utf-8")
-print(f" Saved cleaned athletes → {OUT}")
+df_clean = df.reindex(columns=[c for c in cols if c in df.columns]).copy()
+
+# write CSV (na_rep="" removes literal <NA> in output)
+df_clean.to_csv(OUT, index=False, encoding="utf-8", na_rep="")
+print(f"Saved cleaned athletes → {OUT}")
 print(df_clean.info())
 print(df_clean.head(5))

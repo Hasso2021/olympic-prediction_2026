@@ -32,6 +32,9 @@ data/clean/**
 !data/clean/.gitkeep
 !data/clean/README.md
 
+# Ignore the duplicate awards file from HTML
+data/clean/olympic_results_awards.csv
+
 # Large/intermediate artifacts just in case
 *.zip
 *.7z

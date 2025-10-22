@@ -1,41 +1,56 @@
-# OS / editor / Python
-.DS_Store
-Thumbs.db
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.venv/
-venv/
+# ===========================================
+# OLYMPIC PREDICTION PROJECT - GITIGNORE
+# ===========================================
+
+# -------- ENVIRONMENT --------
 .env
 .env.*
+**/.env
+**/.env.*
 
-# Node / frontend
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# -------- PYTHON --------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# -------- NODE / FRONTEND --------
 node_modules/
-dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 build/
+dist/
+out/
+coverage/
+*.lcov
 
-# Notebooks: ignore outputs or specific files
+# -------- NOTEBOOKS --------
+.ipynb_checkpoints
 notebooks/.ipynb_checkpoints/
-notebooks/eda2.ipynb 
+notebooks/eda2.ipynb
 
-# Data — keep structure, avoid huge files
-# RAW: ignore everything by default, but keep placeholder/readme
-data/raw/
+# -------- DATA --------
+# Ignore raw data by default (large/unprocessed)
+data/raw/*
 !data/raw/.gitkeep
 !data/raw/README.md
 
-# CLEAN: keep CSV outputs (useful to teammates & backend)
-# If you prefer to keep only some, adjust the allow-list
-data/clean/**
-!data/clean/*.csv 
+# Keep cleaned data for collaboration
 !data/clean/.gitkeep
+!data/clean/*.csv
 !data/clean/README.md
 
 # Ignore the duplicate awards file from HTML
 data/clean/olympic_results_awards.csv
 
-# Large/intermediate artifacts just in case
+# -------- MISC FILES --------
 *.zip
 *.7z
 *.tar
@@ -43,5 +58,31 @@ data/clean/olympic_results_awards.csv
 *.parquet
 *.feather
 *.xls
-*.xlsx   # if you want to avoid Excel sources
+*.xlsx
 *.bak
+
+# -------- EDITOR & OS --------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+*~
+
+# -------- BACKEND / DATABASE --------
+*.db
+*.sqlite
+*.sqlite3
+.supabase/
+
+# -------- MACHINE LEARNING MODELS --------
+*.pkl
+*.joblib
+*.h5
+*.model
+
+# -------- LOCAL DEV --------
+tmp/
+temp/

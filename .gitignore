@@ -2,252 +2,87 @@
 # OLYMPIC PREDICTION PROJECT - GITIGNORE
 # ===========================================
 
-# ===========================================
-# ENVIRONMENT & SECURITY
-# ===========================================
-# Environment variables
+# -------- ENVIRONMENT --------
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 .env.*
 **/.env
 **/.env.*
 
-# Environment setup documentation
-ENV_SETUP.md
-**/ENV_SETUP.md
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
 
-# API keys and secrets
-secrets/
-keys/
-*.key
-*.pem
-*.p12
-
-
-
-# ===========================================
-# NODE.JS & DEPENDENCIES
-# ===========================================
-# Dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Dependency directories
-jspm_packages/
-test-connection.js
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# ===========================================
-# BUILD & DISTRIBUTION
-# ===========================================
-# Build outputs
-build/
-dist/
-out/
-
-# Coverage directory used by tools like istanbul
-coverage/
-*.lcov
-
-# nyc test coverage
-.nyc_output
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# ===========================================
-# LOGS & RUNTIME
-# ===========================================
-# Logs
-logs
-*.log
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Optional REPL history
-.node_repl_history
-
-# ===========================================
-# DATA FILES
-# ===========================================
-# Data files (CSV, JSON, etc.)
-*.csv
-*.json
-*.xlsx
-*.xls
-
-# Data directories
-data/raw/
-data/clean/
-
-# Large data files
-*.zip
-*.tar.gz
-*.rar
-*.7z
-*.parquet
-*.feather
-
-# ===========================================
-# PYTHON & JUPYTER
-# ===========================================
-# Python
+# -------- PYTHON --------
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
+
+# -------- NODE / FRONTEND --------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+out/
+coverage/
+*.lcov
 
-# Virtual environments
-.venv/
-venv/
-.venv
-ENV/
-env/
-venv/
-
-# Jupyter Notebook
+# -------- NOTEBOOKS --------
 .ipynb_checkpoints
 notebooks/.ipynb_checkpoints/
 notebooks/eda2.ipynb
 
-# ===========================================
-# DATABASE & BACKUP
-# ===========================================
-# Database files
-*.db
-*.sqlite
-*.sqlite3
+# -------- DATA --------
+# Ignore raw data by default (large/unprocessed)
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/README.md
 
-# Backup files
+# Keep cleaned data for collaboration
+!data/clean/.gitkeep
+!data/clean/*.csv
+!data/clean/README.md
+
+# Ignore the duplicate awards file from HTML
+data/clean/olympic_results_awards.csv
+
+# -------- MISC FILES --------
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.parquet
+*.feather
+*.xls
+*.xlsx
 *.bak
-*.backup
-*.old
 
-# ===========================================
-# TEST & DEBUG FILES
-# ===========================================
-# Test files
-test-*.js
-debug-*.js
-check-*.js
-diagnose-*.js
-explore-*.js
-visualize-*.js
-
-# Temporary scripts
-temp-*.js
-scratch-*.js
-
-# ===========================================
-# EDITOR & IDE
-# ===========================================
-# Editor directories and files
+# -------- EDITOR & OS --------
 .vscode/
 .idea/
+.DS_Store
+Thumbs.db
+ehthumbs.db
 *.swp
 *.swo
 *~
 
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
+# -------- BACKEND / DATABASE --------
+*.db
+*.sqlite
+*.sqlite3
+.supabase/
 
-# ===========================================
-# OPERATING SYSTEM
-# ===========================================
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# ===========================================
-# MACHINE LEARNING & AI
-# ===========================================
-# Machine learning models
+# -------- MACHINE LEARNING MODELS --------
 *.pkl
 *.joblib
 *.h5
 *.model
 
-# ===========================================
-# STATISTICAL SOFTWARE
-# ===========================================
-# R files
-*.RData
-*.Rhistory
-
-# SAS files
-*.sas7bdat
-
-# SPSS files
-*.sav
-
-# Stata files
-*.dta
-
-# ===========================================
-# LOCAL DEVELOPMENT
-# ===========================================
-# Local development
-.local/
-local/
-
-# Supabase specific
-.supabase/
-
-# Temporary folders
+# -------- LOCAL DEV --------
 tmp/
 temp/
-
-# ===========================================
-# SENSITIVE DATA FILES
-# ===========================================
-# Excel files with sensitive data
-*_sensitive.xlsx
-*_private.xlsx
-*_confidential.xlsx
-
-# Ignore the duplicate awards file from HTML
-data/clean/olympic_results_awards.csv
